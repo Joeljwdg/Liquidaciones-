@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,21 +7,80 @@
     body {
       font-family: Arial, sans-serif;
       margin: 2rem;
-      background-color: #fff;
-      color: #000;
+      background-color: #f5f5f5;
+      color: #333;
     }
     h1 {
-      font-weight: bold;
       font-size: 2rem;
+      margin-bottom: 1rem;
     }
-    p {
-      font-size: 1.2rem;
+    table {
+      border-collapse: collapse;
+      width: 100%;
       margin-top: 1rem;
+    }
+    th, td {
+      border: 1px solid #999;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    th {
+      background-color: #eee;
+    }
+    input[type="date"], select {
+      padding: 0.5rem;
+      margin-right: 1rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <h1>App funcional: Control de empleados</h1>
-  <p>Prototipo simple funcionando</p>
-</body>
+  <h1>Control de empleados</h1>
+  <div>
+    <input type="date" id="fecha" />
+    <select id="empleado">
+      <option value="Herni">Herni</option>
+      <option value="Alex">Alex</option>
+    </select>
+    <select id="modo">
+      <option value="Solo">Solo</option>
+      <option value="Con Alex">Con Alex</option>
+    </select>
+    <button onclick="agregarRegistro()">Agregar</button>
+  </div>
+  <table id="tabla">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Empleado</th>
+        <th>Modo</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>  <script>
+    function agregarRegistro() {
+      const fecha = document.getElementById("fecha").value;
+      const empleado = document.getElementById("empleado").value;
+      const modo = document.getElementById("modo").value;
+
+      if (!fecha) {
+        alert("Seleccioná una fecha.");
+        return;
+      }
+
+      const tbody = document.getElementById("tabla").querySelector("tbody");
+      const fila = document.createElement("tr");
+
+      fila.innerHTML = `
+        <td>${fecha}</td>
+        <td>${empleado}</td>
+        <td>${modo}</td>
+      `;
+
+      tbody.appendChild(fila);
+    }
+  </script></body>
 </html>
